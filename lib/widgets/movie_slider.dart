@@ -61,7 +61,7 @@ class _MovieSliderState extends State<MovieSlider> {
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) => _MoviePoster(
                       widget.popularMovie[index],
-                      '${widget.title}-${index}-${widget.popularMovie[index].id}')),
+                      '${widget.title}-$index-${widget.popularMovie[index].id}')),
             )
           ],
         ));
@@ -75,6 +75,7 @@ class _MoviePoster extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    movie.movieId = heroId;
     return Container(
       width: 130,
       height: 190,
@@ -85,7 +86,7 @@ class _MoviePoster extends StatelessWidget {
             onTap: () =>
                 Navigator.pushNamed(context, 'details', arguments: movie),
             child: Hero(
-              tag: heroId,
+              tag: movie.movieId!,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(20),
                 child: FadeInImage(

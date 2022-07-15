@@ -32,9 +32,9 @@ class CastingCard extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (BuildContext context, int index) {
                   if (cast!.isEmpty) {
-                    return Text('');
+                    return const Text('No hay datoss');
                   }
-                  return _CastCard(actor: cast![index]);
+                  return _CastCard(actor: cast[index]);
                 }),
           );
         });

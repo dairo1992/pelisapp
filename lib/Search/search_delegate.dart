@@ -43,9 +43,9 @@ class MovieSearchDelegate extends SearchDelegate {
     if (query.isEmpty) {
       return _emptyContainer();
     }
-
-    return FutureBuilder(
-      future: moviesProvider.getSearchMovies(query),
+    moviesProvider.getSuggestionByQuery(query);
+    return StreamBuilder(
+      stream: moviesProvider.suggestionStream,
       builder: (_, AsyncSnapshot<List<Movie>> snapshot) {
         if (!snapshot.hasData) {
           return _emptyContainer();
@@ -67,15 +67,20 @@ class _Movieitem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      title: Text(movie.title),
-      subtitle: Text(movie.originalTitle),
-      leading: FadeInImage(
-          placeholder: const AssetImage('assets/img/no-image.jpg'),
-          image: NetworkImage(movie.fullPosterImg),
-          width: 80,
-          fit: BoxFit.contain),
-      onTap: () => {Navigator.pushNamed(context, 'details', arguments: movie)},
+    movie.movieId = 'search-${movie.id}';
+    return Hero(
+      tag: movie.movieId!,
+      child: ListTile(
+        title: Text(movie.title),
+        subtitle: Text(movie.originalTitle),
+        leading: FadeInImage(
+            placeholder: const AssetImage('assets/img/no-image.jpg'),
+            image: NetworkImage(movie.fullPosterImg),
+            width: 80,
+            fit: BoxFit.contain),
+        onTap: () =>
+            {Navigator.pushNamed(context, 'details', arguments: movie)},
+      ),
     );
   }
 }

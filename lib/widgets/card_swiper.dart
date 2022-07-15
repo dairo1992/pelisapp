@@ -26,12 +26,12 @@ class SwiperScreen extends StatelessWidget {
           itemHeight: size.height * 0.4,
           itemBuilder: (_, index) {
             final movie = movies[index];
-            movie.heroId = 'swiper-${movie.id}';
+            movie.movieId = 'cardSwiper-${movie.id}';
             return GestureDetector(
               onTap: () =>
                   Navigator.pushNamed(context, 'details', arguments: movie),
               child: Hero(
-                tag: movie.heroId!,
+                tag: movie.movieId!,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(20),
                   child: FadeInImage(

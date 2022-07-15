@@ -5,6 +5,8 @@ import 'package:pelisapp/models/models.dart';
 import 'package:pelisapp/widgets/widgets.dart';
 
 class DetailsScreen extends StatelessWidget {
+  const DetailsScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final Movie movie = ModalRoute.of(context)!.settings.arguments as Movie;
@@ -71,7 +73,7 @@ class _PosterAndTitle extends StatelessWidget {
         child: Row(
           children: [
             Hero(
-              tag: movie.heroId!,
+              tag: movie.movieId!,
               child: ClipRRect(
                   borderRadius: BorderRadius.circular(20),
                   child: FadeInImage(
@@ -82,7 +84,7 @@ class _PosterAndTitle extends StatelessWidget {
             ),
             const SizedBox(width: 20),
             ConstrainedBox(
-              constraints: BoxConstraints(maxWidth: size.width - 160),
+              constraints: BoxConstraints(maxWidth: size.width - 180),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
