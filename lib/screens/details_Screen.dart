@@ -70,13 +70,16 @@ class _PosterAndTitle extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Row(
           children: [
-            ClipRRect(
-                borderRadius: BorderRadius.circular(20),
-                child: FadeInImage(
+            Hero(
+              tag: movie.heroId!,
+              child: ClipRRect(
+                  borderRadius: BorderRadius.circular(20),
+                  child: FadeInImage(
                     placeholder: const AssetImage('assets/img/no-image.jpg'),
                     image: NetworkImage(movie.fullPosterImg),
                     height: 150,
-                    width: 100)),
+                  )),
+            ),
             const SizedBox(width: 20),
             ConstrainedBox(
               constraints: BoxConstraints(maxWidth: size.width - 160),
@@ -122,7 +125,7 @@ class _Overview extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
       child: Text(
-        movie.overview,
+        movie.overview ?? '',
         textAlign: TextAlign.justify,
         style: textTheme.subtitle1,
       ),

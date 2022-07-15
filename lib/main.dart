@@ -30,6 +30,7 @@ class MyApp extends StatelessWidget {
         'home': (_) => HomeScreen(),
         'details': (_) => DetailsScreen(),
       },
+      themeMode: ThemeMode.system,
       theme: ThemeData.dark()
           .copyWith(appBarTheme: const AppBarTheme(color: Colors.indigo)),
     );

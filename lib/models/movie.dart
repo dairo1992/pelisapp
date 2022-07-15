@@ -1,22 +1,22 @@
 import 'dart:convert';
 
 class Movie {
-  Movie({
-    required this.adult,
-    this.backdropPath,
-    required this.genreIds,
-    required this.id,
-    required this.originalLanguage,
-    required this.originalTitle,
-    required this.overview,
-    required this.popularity,
-    this.posterPath,
-    this.releaseDate,
-    required this.title,
-    required this.video,
-    required this.voteAverage,
-    required this.voteCount,
-  });
+  Movie(
+      {required this.adult,
+      this.backdropPath,
+      required this.genreIds,
+      required this.id,
+      required this.originalLanguage,
+      required this.originalTitle,
+      this.overview,
+      required this.popularity,
+      this.posterPath,
+      this.releaseDate,
+      required this.title,
+      required this.video,
+      required this.voteAverage,
+      required this.voteCount,
+      this.heroId});
 
   bool adult;
   String? backdropPath;
@@ -24,7 +24,7 @@ class Movie {
   int id;
   String originalLanguage;
   String originalTitle;
-  String overview;
+  String? overview;
   double popularity;
   String? posterPath;
   String? releaseDate;
@@ -33,13 +33,15 @@ class Movie {
   double voteAverage;
   int voteCount;
 
+  String? heroId;
+
   get fullPosterImg {
     if (posterPath != null) return 'https://image.tmdb.org/t/p/w500$posterPath';
     return 'https://i.stack.imgur.com/GNhxO.png';
   }
 
   get fullbackdropPath {
-    if (posterPath != null) {
+    if (backdropPath != null) {
       return 'https://image.tmdb.org/t/p/w500$backdropPath';
     }
     return 'https://i.stack.imgur.com/GNhxO.png';

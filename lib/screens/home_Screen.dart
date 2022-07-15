@@ -2,14 +2,17 @@
 
 import 'package:flutter/material.dart';
 import 'package:pelisapp/providers/movies_provider.dart';
+import 'package:pelisapp/Search/search_delegate.dart';
 import 'package:pelisapp/widgets/widgets.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
+    final theme = MediaQuery.of(context).platformBrightness == Brightness.dark
+        ? "lightTheme"
+        : "darkTheme";
     final moviesProvider = Provider.of<MoviesProvider>(context);
     return Scaffold(
         appBar: AppBar(
@@ -17,7 +20,9 @@ class HomeScreen extends StatelessWidget {
           elevation: 0,
           actions: [
             IconButton(
-                onPressed: () {}, icon: const Icon(Icons.search_outlined))
+                onPressed: () => showSearch(
+                    context: context, delegate: MovieSearchDelegate()),
+                icon: const Icon(Icons.search_outlined))
           ],
         ),
         body: SingleChildScrollView(

@@ -22,7 +22,7 @@ class MoviesProvider extends ChangeNotifier {
   }
 
   Future<String> _getJsonData(String endPoint, [int page = 1]) async {
-    var url = Uri.https(_baseUrl, endPoint, {
+    final url = Uri.https(_baseUrl, endPoint, {
       'api_key': _apiKey,
       'language': _language,
       'page': page.toString(),
@@ -55,10 +55,18 @@ class MoviesProvider extends ChangeNotifier {
   }
 
   Future<List<Cast>> getmovieCast(int id) async {
-    print('pidiendo actores');
+    if (movieCastMap.containsKey(id)) return movieCastMap[id]!;
     final jsonData = await _getJsonData('3/movie/$id/credits');
     final creditsResponse = CreditsMovie.fromJson(jsonData);
     movieCastMap[id] = creditsResponse.cast;
     return creditsResponse.cast;
+  }
+
+  Future<List<Movie>> getSearchMovies(String query) async {
+    final url = Uri.https(_baseUrl, '3/search/movie',
+        {'api_key': _apiKey, 'language': _language, 'query': query});
+    final response = await http.get(url);
+    final searchResponse = SearchResponse.fromJson(response.body);
+    return searchResponse.results;
   }
 }
