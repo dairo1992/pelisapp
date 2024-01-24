@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pelisapp/providers/movies_provider.dart';
 import 'package:pelisapp/screens/screens.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter/material.dart';
 
 void main() => runApp(AppState());
 
