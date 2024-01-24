@@ -32,7 +32,6 @@ class Movie {
   bool video;
   double voteAverage;
   int voteCount;
-
   String? movieId;
 
   get fullPosterImg {
